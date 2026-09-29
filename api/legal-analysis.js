@@ -1,176 +1,161 @@
-export default {
-  async fetch(request) {
+export default async function handler(req, res) {
 
-    if (request.method !== "POST") {
-      return Response.json(
-        {
-          success: false,
-          error: "Method not allowed"
-        },
-        {
-          status: 405
-        }
-      );
+  if (req.method !== "POST") {
+    return res.status(405).json({
+      success: false,
+      error: "Method not allowed"
+    });
+  }
+
+  try {
+
+    const {
+      category,
+      situation,
+      name,
+      contact
+    } = req.body || {};
+
+    const cleanCategory =
+      typeof category === "string"
+        ? category.trim()
+        : "";
+
+    const cleanSituation =
+      typeof situation === "string"
+        ? situation.trim()
+        : "";
+
+    const cleanName =
+      typeof name === "string"
+        ? name.trim()
+        : "";
+
+    const cleanContact =
+      typeof contact === "string"
+        ? contact.trim()
+        : "";
+
+
+    if (!cleanCategory) {
+      return res.status(400).json({
+        success: false,
+        error: "Не вибрана категорія."
+      });
     }
 
-    try {
 
-      const body = await request.json();
+    if (!cleanSituation) {
+      return res.status(400).json({
+        success: false,
+        error: "Не описана ситуація."
+      });
+    }
 
-      const category =
-        typeof body.category === "string"
-          ? body.category.trim()
-          : "";
 
-      const situation =
-        typeof body.situation === "string"
-          ? body.situation.trim()
-          : "";
+    if (cleanSituation.length > 10000) {
+      return res.status(400).json({
+        success: false,
+        error: "Опис ситуації занадто великий."
+      });
+    }
 
-      const name =
-        typeof body.name === "string"
-          ? body.name.trim()
-          : "";
 
-      const contact =
-        typeof body.contact === "string"
-          ? body.contact.trim()
-          : "";
+    const supabaseUrl =
+      process.env.SUPABASE_URL;
 
-      if (!category) {
-        return Response.json(
-          {
-            success: false,
-            error: "Не вибрана категорія."
-          },
-          {
-            status: 400
-          }
-        );
-      }
+    const supabaseSecretKey =
+      process.env.SUPABASE_SECRET_KEY;
 
-      if (!situation) {
-        return Response.json(
-          {
-            success: false,
-            error: "Не описана ситуація."
-          },
-          {
-            status: 400
-          }
-        );
-      }
 
-      if (situation.length > 10000) {
-        return Response.json(
-          {
-            success: false,
-            error: "Опис ситуації занадто великий."
-          },
-          {
-            status: 400
-          }
-        );
-      }
-
-      const supabaseUrl =
-        process.env.SUPABASE_URL;
-
-      const supabaseSecretKey =
-        process.env.SUPABASE_SECRET_KEY;
-
-      if (
-        !supabaseUrl ||
-        !supabaseSecretKey
-      ) {
-        console.error(
-          "Supabase environment variables are missing."
-        );
-
-        return Response.json(
-          {
-            success: false,
-            error: "Помилка конфігурації сервера."
-          },
-          {
-            status: 500
-          }
-        );
-      }
-
-      const response =
-        await fetch(
-          `${supabaseUrl}/rest/v1/legal_requests`,
-          {
-            method: "POST",
-
-            headers: {
-              "Content-Type": "application/json",
-              "apikey": supabaseSecretKey,
-              "Authorization":
-                `Bearer ${supabaseSecretKey}`,
-              "Prefer": "return=minimal"
-            },
-
-            body: JSON.stringify({
-              category,
-              situation,
-              name: name || null,
-              contact: contact || null,
-              status: "new"
-            })
-          }
-        );
-
-      if (!response.ok) {
-
-        const errorText =
-          await response.text();
-
-        console.error(
-          "Supabase error:",
-          errorText
-        );
-
-        return Response.json(
-          {
-            success: false,
-            error: "Не вдалося зберегти звернення."
-          },
-          {
-            status: 500
-          }
-        );
-      }
-
-      return Response.json(
-        {
-          success: true,
-          message:
-            "Звернення успішно збережено."
-        },
-        {
-          status: 201
-        }
-      );
-
-    } catch(error) {
+    if (!supabaseUrl || !supabaseSecretKey) {
 
       console.error(
-        "API error:",
-        error
+        "Supabase environment variables are missing."
       );
 
-      return Response.json(
+      return res.status(500).json({
+        success: false,
+        error: "Помилка конфігурації сервера."
+      });
+    }
+
+
+    const supabaseResponse =
+      await fetch(
+        `${supabaseUrl}/rest/v1/legal_requests`,
         {
-          success: false,
-          error:
-            "Сталася помилка сервера."
-        },
-        {
-          status: 500
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json",
+            "apikey": supabaseSecretKey,
+            "Authorization":
+              `Bearer ${supabaseSecretKey}`,
+            "Prefer": "return=minimal"
+          },
+
+          body: JSON.stringify({
+
+            category:
+              cleanCategory,
+
+            situation:
+              cleanSituation,
+
+            name:
+              cleanName || null,
+
+            contact:
+              cleanContact || null,
+
+            status:
+              "new"
+
+          })
         }
       );
+
+
+    if (!supabaseResponse.ok) {
+
+      const errorText =
+        await supabaseResponse.text();
+
+      console.error(
+        "Supabase error:",
+        errorText
+      );
+
+      return res.status(500).json({
+        success: false,
+        error:
+          "Не вдалося зберегти звернення."
+      });
     }
+
+
+    return res.status(201).json({
+
+      success: true,
+
+      message:
+        "Звернення успішно збережено."
+
+    });
+
+
+  } catch (error) {
+
+    console.error(
+      "API error:",
+      error
+    );
+
+    return res.status(500).json({
+      success: false,
+      error:
+        "Сталася помилка сервера."
+    });
   }
-};
+}

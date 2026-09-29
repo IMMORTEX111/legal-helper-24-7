@@ -3965,7 +3965,6 @@ modalSubmit.addEventListener("click", async ()=>{
       data
     );
 
-
     /* CHECK SERVER RESPONSE */
 
     if(
@@ -3974,16 +3973,15 @@ modalSubmit.addEventListener("click", async ()=>{
     ){
 
       throw new Error(
-        data?.error ||
-        `Помилка сервера (${response.status}).`
+        data && data.error
+          ? data.error
+          : "Помилка сервера (" + response.status + ")."
       );
 
     }
 
 
-    /* SUCCESS ONLY AFTER SERVER CONFIRMS */
-
-    modalForm.classList.add("hidden");
+    /* SUCCESS ONLY AFTER SERVER CONFIRMS */    modalForm.classList.add("hidden");
 
     modalSuccess.classList.add("active");
 

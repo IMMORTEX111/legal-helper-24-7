@@ -3592,6 +3592,7 @@ document
 const situationModal =
   document.getElementById("situationModal");
 
+```javascript
 const modalClose =
   document.getElementById("modalClose");
 
@@ -3831,13 +3832,19 @@ modalConsent.addEventListener("change",()=>{
    SUBMIT
 ========================================================= */
 
-modalSubmit.addEventListener("click",()=>{
+modalSubmit.addEventListener("click", async ()=>{
 
   const situation =
     modalSituation.value.trim();
 
   const consent =
     modalConsent.checked;
+
+  const name =
+    modalName.value.trim();
+
+  const contact =
+    modalContact.value.trim();
 
 
   /* SITUATION REQUIRED */
@@ -3893,92 +3900,117 @@ modalSubmit.addEventListener("click",()=>{
   }
 
 
- /* =========================================
-   SEND LEGAL REQUEST
-========================================= */
+  /* CLEAR ERROR */
 
-try {
+  modalError.textContent = "";
 
-  const response = await fetch(
-    "/api/legal-analysis",
-    {
-      method: "POST",
-
-      headers: {
-        "Content-Type": "application/json"
-      },
-
-      body: JSON.stringify({
-
-        category: selectedCategory,
-
-        situation:
-          modalSituation.value.trim(),
-
-        name:
-          modalName.value.trim(),
-
-        contact:
-          modalContact.value.trim()
-
-      })
-    }
-  );
+  modalError.classList.remove("active");
 
 
-  const data =
-    await response.json();
+  /* BUTTON LOADING */
+
+  const originalButtonText =
+    modalSubmit.textContent;
+
+  modalSubmit.disabled = true;
+
+  modalSubmit.textContent =
+    "Надсилаємо...";
 
 
-  if (!response.ok || !data.success) {
+  /* SEND LEGAL REQUEST */
 
-    throw new Error(
-      data.error ||
-      "Не вдалося надіслати звернення."
+  try{
+
+    const response =
+      await fetch(
+        "/api/legal-analysis",
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json"
+          },
+
+          body: JSON.stringify({
+
+            category:
+              selectedCategory,
+
+            situation:
+              situation,
+
+            name:
+              name,
+
+            contact:
+              contact
+
+          })
+        }
+      );
+
+
+    const data =
+      await response.json();
+
+
+    console.log(
+      "LEGAL API STATUS:",
+      response.status
     );
 
+    console.log(
+      "LEGAL API RESPONSE:",
+      data
+    );
+
+
+    /* CHECK SERVER RESPONSE */
+
+    if(
+      !response.ok ||
+      !data.success
+    ){
+
+      throw new Error(
+        data?.error ||
+        `Помилка сервера (${response.status}).`
+      );
+
+    }
+
+
+    /* SUCCESS ONLY AFTER SERVER CONFIRMS */
+
+    modalForm.classList.add("hidden");
+
+    modalSuccess.classList.add("active");
+
+
+  }catch(error){
+
+    console.error(
+      "LEGAL REQUEST ERROR:",
+      error
+    );
+
+
+    modalError.textContent =
+      error.message ||
+      "Сталася помилка. Спробуйте ще раз.";
+
+    modalError.classList.add("active");
+
+
+  }finally{
+
+    modalSubmit.disabled = false;
+
+    modalSubmit.textContent =
+      originalButtonText;
+
   }
-
-
-  /* SUCCESS */
-
-  modalForm.classList.add("hidden");
-
-  modalSuccess.classList.add("active");
-
-
-}
-catch (error) {
-
-  console.error(
-    "LEGAL REQUEST:",
-    error
-  );
-
-  modalError.textContent =
-    error.message ||
-    "Сталася помилка. Спробуйте ще раз.";
-
-  modalError.classList.add("active");
-
-}
-
-  console.log("LEGAL REQUEST:",{
-
-    category:selectedCategory,
-
-    situation:situation,
-
-    name:modalName.value.trim(),
-
-    contact:modalContact.value.trim()
-
-  });
-
-
-  modalForm.classList.add("hidden");
-
-  modalSuccess.classList.add("active");
 
 });
 
@@ -4049,6 +4081,8 @@ document.addEventListener(
 showSlide(0);
 
 </script>
+```
+
 
 </body>
 </html>

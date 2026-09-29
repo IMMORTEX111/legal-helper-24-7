@@ -3893,27 +3893,75 @@ modalSubmit.addEventListener("click",()=>{
   }
 
 
-  /* =========================================
-     FRONTEND DEMO
+ /* =========================================
+   SEND LEGAL REQUEST
+========================================= */
 
-     На наступному етапі тут буде:
+try {
 
-     fetch("/api/legal-analysis", {
-       method:"POST",
-       headers:{
-         "Content-Type":"application/json"
-       },
-       body:JSON.stringify({
-         category:selectedCategory,
-         situation:situation,
-         name:modalName.value.trim(),
-         contact:modalContact.value.trim()
-       })
-     });
+  const response = await fetch(
+    "/api/legal-analysis",
+    {
+      method: "POST",
 
-     Поки що дані нікуди не відправляються.
-  ========================================= */
+      headers: {
+        "Content-Type": "application/json"
+      },
 
+      body: JSON.stringify({
+
+        category: selectedCategory,
+
+        situation:
+          modalSituation.value.trim(),
+
+        name:
+          modalName.value.trim(),
+
+        contact:
+          modalContact.value.trim()
+
+      })
+    }
+  );
+
+
+  const data =
+    await response.json();
+
+
+  if (!response.ok || !data.success) {
+
+    throw new Error(
+      data.error ||
+      "Не вдалося надіслати звернення."
+    );
+
+  }
+
+
+  /* SUCCESS */
+
+  modalForm.classList.add("hidden");
+
+  modalSuccess.classList.add("active");
+
+
+}
+catch (error) {
+
+  console.error(
+    "LEGAL REQUEST:",
+    error
+  );
+
+  modalError.textContent =
+    error.message ||
+    "Сталася помилка. Спробуйте ще раз.";
+
+  modalError.classList.add("active");
+
+}
 
   console.log("LEGAL REQUEST:",{
 

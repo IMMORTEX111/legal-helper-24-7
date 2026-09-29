@@ -1,0 +1,4006 @@
+<!DOCTYPE html>
+
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Юридичний помічник 24/7</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --navy:#0B1724;
+  --navy2:#122235;
+  --ivory:#F4F1EA;
+  --white:#FFFFFF;
+  --text:#172333;
+  --muted:#687483;
+  --line:#D9DDE2;
+  --blue:#2563EB;
+  --blue2:#1D4ED8;
+  --blue-light:#6E96F4;
+  --shadow:0 20px 55px rgba(11,23,36,.09);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:"DM Sans",sans-serif;
+  background:var(--ivory);
+  color:var(--text);
+  line-height:1.55;
+}
+
+body.modal-open{
+  overflow:hidden;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+textarea,
+input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.container{
+  width:min(1180px,calc(100% - 40px));
+  margin:0 auto;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  border:0;
+  border-radius:12px;
+  padding:14px 21px;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.25s ease;
+}
+
+.btn-primary{
+  background:var(--blue);
+  color:white;
+  box-shadow:0 9px 25px rgba(37,99,235,.24);
+}
+
+.btn-primary:hover{
+  background:var(--blue2);
+  transform:translateY(-2px);
+  box-shadow:0 13px 30px rgba(37,99,235,.32);
+}
+
+.btn-light{
+  background:white;
+  color:var(--navy);
+}
+
+.btn-light:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+.btn-outline{
+  background:transparent;
+  border:1px solid rgba(255,255,255,.25);
+  color:white;
+}
+
+.btn-outline:hover{
+  background:rgba(255,255,255,.07);
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:30;
+  padding:20px 0;
+  color:white;
+}
+
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:30px;
+}
+
+.logo{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:13px;
+  font-size:18px;
+  font-weight:700;
+  letter-spacing:-.035em;
+  white-space:nowrap;
+}
+
+.logo-mark{
+  position:relative;
+  width:13px;
+  height:13px;
+  background:#4D82F6;
+  border-radius:50%;
+  box-shadow:
+    0 0 0 6px rgba(77,130,246,.10),
+    0 0 24px rgba(77,130,246,.35);
+}
+
+.logo-mark::after{
+  content:"";
+  position:absolute;
+  width:5px;
+  height:5px;
+  background:white;
+  border-radius:50%;
+  top:4px;
+  left:4px;
+  opacity:.9;
+}
+
+.logo::after{
+  content:"";
+  position:absolute;
+  left:26px;
+  bottom:-8px;
+  width:92px;
+  height:2px;
+  border-radius:5px;
+  background:linear-gradient(
+    90deg,
+    #4D82F6,
+    rgba(77,130,246,0)
+  );
+}
+
+.header-nav{
+  display:flex;
+  align-items:center;
+  gap:28px;
+  font-size:13px;
+  color:rgba(255,255,255,.76);
+}
+
+.header-nav a{
+  transition:.2s ease;
+}
+
+.header-nav a:hover{
+  color:white;
+}
+
+.login{
+  border:1px solid rgba(255,255,255,.22);
+  padding:9px 17px;
+  border-radius:999px;
+  color:white!important;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  background:var(--navy);
+  color:white;
+  overflow:hidden;
+}
+
+.hero-slider{
+  position:relative;
+  overflow:hidden;
+}
+
+.hero-track{
+  display:flex;
+  width:200%;
+  transition:transform .65s cubic-bezier(.77,0,.18,1);
+}
+
+.hero-slide{
+  position:relative;
+  flex:0 0 50%;
+  width:50%;
+  min-height:700px;
+  display:flex;
+  align-items:center;
+  padding:98px 0 72px;
+}
+
+.hero-content{
+  width:min(1180px,calc(100% - 40px));
+  margin:0 auto;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:68px;
+  align-items:center;
+}
+
+
+/* =========================
+   HERO TITLE
+========================= */
+
+.hero h1{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(57px,6.2vw,84px);
+  line-height:.96;
+  letter-spacing:-.055em;
+  max-width:620px;
+  margin-bottom:25px;
+  font-weight:600;
+}
+
+.hero h1 .title-line{
+  display:block;
+}
+
+.hero h1 .title-accent{
+  display:block;
+  color:#8FAEF8;
+  font-style:italic;
+  font-weight:500;
+  position:relative;
+  width:max-content;
+}
+
+.hero h1 .title-accent::after{
+  content:"";
+  position:absolute;
+  left:3px;
+  bottom:-5px;
+  width:72%;
+  height:2px;
+  background:linear-gradient(
+    90deg,
+    #527FF0,
+    rgba(82,127,240,0)
+  );
+  opacity:.8;
+}
+
+.hero-description{
+  color:#B7C1CD;
+  font-size:16px;
+  line-height:1.65;
+  max-width:550px;
+  margin-bottom:27px;
+}
+
+.hero-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:27px;
+}
+
+.trust{
+  display:flex;
+  flex-wrap:wrap;
+  gap:18px;
+  color:#8997A7;
+  font-size:11px;
+}
+
+.trust span{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+
+.trust span::before{
+  content:"";
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#4D82F6;
+}
+
+
+/* =========================
+   INTERACTION
+========================= */
+
+.interaction{
+  background:#F8F7F3;
+  color:var(--text);
+  border-radius:25px;
+  padding:30px;
+  box-shadow:0 30px 75px rgba(0,0,0,.28);
+}
+
+.interaction-label{
+  color:#7B8693;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.14em;
+  margin-bottom:9px;
+}
+
+.interaction h2{
+  font-family:"Playfair Display",serif;
+  font-size:30px;
+  line-height:1.1;
+  margin-bottom:11px;
+}
+
+.interaction p{
+  color:#6A7582;
+  font-size:13px;
+  line-height:1.6;
+  margin-bottom:19px;
+}
+
+.form-label{
+  display:block;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:8px;
+}
+
+textarea{
+  width:100%;
+  height:118px;
+  resize:none;
+  outline:none;
+  border:1px solid #D8DDE3;
+  border-radius:14px;
+  background:white;
+  padding:15px;
+  color:var(--text);
+  margin-bottom:11px;
+}
+
+textarea:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(37,99,235,.1);
+}
+
+.interaction .btn{
+  width:100%;
+}
+
+.categories{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:13px;
+}
+
+.category{
+  background:#ECEFF3;
+  color:#596572;
+  border-radius:999px;
+  padding:6px 10px;
+  font-size:10px;
+}
+
+
+/* =========================
+   SIDE SWIPE CONTROL
+========================= */
+
+.swipe-control{
+  position:absolute;
+  right:18px;
+  top:50%;
+  transform:translateY(-50%);
+  width:76px;
+  height:188px;
+  border:1px solid rgba(255,255,255,.16);
+  border-right:0;
+  border-radius:22px 0 0 22px;
+  background:linear-gradient(
+    180deg,
+    rgba(255,255,255,.055),
+    rgba(255,255,255,.015)
+  );
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:100;
+  cursor:pointer;
+  transition:.3s ease;
+}
+
+.swipe-control:hover{
+  width:92px;
+  background:linear-gradient(
+    180deg,
+    rgba(37,99,235,.18),
+    rgba(255,255,255,.035)
+  );
+  border-color:rgba(92,137,238,.42);
+}
+
+.swipe-control-arrow{
+  width:48px;
+  height:48px;
+  border:1px solid rgba(95,139,239,.55);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#7DA0F3;
+  font-size:27px;
+  font-weight:300;
+  line-height:1;
+  animation:arrowMoveRight 1.8s ease-in-out infinite;
+  box-shadow:0 0 0 0 rgba(77,130,246,.2);
+}
+
+.swipe-control.back .swipe-control-arrow{
+  animation:arrowMoveLeft 1.8s ease-in-out infinite;
+}
+
+@keyframes arrowMoveRight{
+
+  0%,100%{
+    transform:translateX(0);
+    box-shadow:0 0 0 0 rgba(77,130,246,0);
+  }
+
+  50%{
+    transform:translateX(7px);
+    box-shadow:0 0 0 7px rgba(77,130,246,.06);
+  }
+
+}
+
+@keyframes arrowMoveLeft{
+
+  0%,100%{
+    transform:translateX(0);
+    box-shadow:0 0 0 0 rgba(77,130,246,0);
+  }
+
+  50%{
+    transform:translateX(-7px);
+    box-shadow:0 0 0 7px rgba(77,130,246,.06);
+  }
+
+}
+
+
+/* =========================
+   HERO NAVIGATION
+========================= */
+
+.nav-screen{
+  width:min(1040px,100%);
+  margin:0 auto;
+}
+
+.nav-screen-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:30px;
+  margin-bottom:34px;
+}
+
+.nav-screen h2{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(46px,6vw,74px);
+  line-height:.98;
+  letter-spacing:-.05em;
+}
+
+.nav-note{
+  max-width:270px;
+  color:#8290A0;
+  font-size:12px;
+  line-height:1.6;
+}
+
+.hero-navigation{
+  border-top:1px solid rgba(255,255,255,.17);
+}
+
+.hero-nav-item{
+  display:grid;
+  grid-template-columns:70px 1fr 35px;
+  align-items:center;
+  gap:20px;
+  padding:16px 0;
+  border-bottom:1px solid rgba(255,255,255,.13);
+  transition:.25s ease;
+}
+
+.hero-nav-item:hover{
+  padding-left:15px;
+  padding-right:15px;
+  background:rgba(255,255,255,.035);
+}
+
+.hero-nav-number{
+  color:#527FE2;
+  font-size:11px;
+  font-weight:700;
+}
+
+.hero-nav-title{
+  color:#DCE2E9;
+  font-size:18px;
+  font-weight:500;
+}
+
+.hero-nav-arrow{
+  color:#668EF4;
+  font-size:18px;
+  text-align:right;
+}
+
+
+/* =========================
+   HERO CONTROLS
+========================= */
+
+.hero-controls{
+  position:absolute;
+  bottom:25px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  align-items:center;
+  gap:13px;
+  z-index:25;
+}
+
+.arrow{
+  width:39px;
+  height:39px;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:50%;
+  background:transparent;
+  color:white;
+  cursor:pointer;
+  transition:.2s ease;
+}
+
+.arrow:hover{
+  background:rgba(255,255,255,.08);
+}
+
+.dots{
+  display:flex;
+  gap:7px;
+}
+
+.dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#536272;
+  cursor:pointer;
+  transition:.25s ease;
+}
+
+.dot.active{
+  width:23px;
+  border-radius:10px;
+  background:#4D82F6;
+}
+
+
+/* =========================
+   GENERAL SECTIONS
+========================= */
+
+.section{
+  padding:82px 0;
+}
+
+.section-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:40px;
+  margin-bottom:39px;
+}
+
+.section h2{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(39px,4vw,55px);
+  line-height:1.04;
+  letter-spacing:-.04em;
+}
+
+.section-intro{
+  max-width:460px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+
+/* =========================
+   HOW
+========================= */
+
+.steps{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line);
+}
+
+.step{
+  padding:24px 24px 8px 0;
+  margin-right:24px;
+  border-right:1px solid var(--line);
+}
+
+.step:last-child{
+  border-right:0;
+  margin-right:0;
+}
+
+.step-number{
+  color:var(--blue);
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:16px;
+}
+
+.step h3{
+  font-size:16px;
+  line-height:1.3;
+  margin-bottom:9px;
+}
+
+.step p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.65;
+}
+
+
+/* =========================
+   FEATURES
+========================= */
+
+.features-section{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 85% 15%,rgba(79,130,246,.38),transparent 25%),
+    linear-gradient(125deg,#0C1C2D 0%,#102944 55%,#173A63 100%);
+  color:white;
+}
+
+.features-section::before{
+  content:"";
+  position:absolute;
+  width:430px;
+  height:430px;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:50%;
+  right:-170px;
+  bottom:-230px;
+}
+
+.features-section .section-intro{
+  color:#AAB8C8;
+}
+
+.feature-list{
+  border-top:1px solid rgba(255,255,255,.15);
+}
+
+.feature-row{
+  display:grid;
+  grid-template-columns:70px 1fr 1.35fr;
+  align-items:center;
+  gap:25px;
+  padding:19px 0;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+
+.feature-number{
+  color:#6690F0;
+  font-size:11px;
+  font-weight:700;
+}
+
+.feature-row h3{
+  font-size:16px;
+}
+
+.feature-row p{
+  color:#AAB8C8;
+  font-size:12px;
+  line-height:1.6;
+}
+
+.feature-bottom{
+  margin-top:27px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.feature-bottom-text strong{
+  display:block;
+  margin-bottom:3px;
+  font-size:14px;
+}
+
+.feature-bottom-text span{
+  color:#AAB8C8;
+  font-size:12px;
+}
+
+
+/* =========================
+   SITUATIONS
+========================= */
+
+.situations-section{
+  position:relative;
+  overflow:hidden;
+}
+
+.situations-section::before{
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  right:-210px;
+  top:100px;
+  background:
+    radial-gradient(circle,rgba(37,99,235,.13),transparent 65%);
+  pointer-events:none;
+}
+
+.situations-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  position:relative;
+}
+
+.situation-card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:17px;
+  padding:20px;
+  min-height:148px;
+  transition:.25s ease;
+}
+
+.situation-card:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow);
+  border-color:#C7D5EF;
+}
+
+.situation-card h3{
+  font-size:15px;
+  margin-bottom:8px;
+}
+
+.situation-card p{
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.55;
+}
+
+.situation-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:25px;
+  margin-top:24px;
+  padding-top:20px;
+  border-top:1px solid var(--line);
+}
+
+.situation-bottom p{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.situation-bottom strong{
+  color:var(--text);
+}
+
+
+/* =========================
+   LEVELS
+========================= */
+
+.levels-section{
+  background:
+    radial-gradient(circle at 80% 0%,rgba(255,255,255,.16),transparent 30%),
+    linear-gradient(135deg,#E5E0D5,#F1EEE7);
+}
+
+.pricing-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.price-card{
+  background:rgba(255,255,255,.88);
+  border:1px solid rgba(25,39,55,.11);
+  border-radius:20px;
+  padding:26px;
+  display:flex;
+  flex-direction:column;
+  backdrop-filter:blur(8px);
+}
+
+.price-card.featured{
+  border:2px solid var(--blue);
+  padding:25px;
+  box-shadow:0 18px 45px rgba(37,99,235,.13);
+}
+
+.price-label{
+  color:#7B8691;
+  font-size:10px;
+  letter-spacing:.13em;
+  font-weight:700;
+  margin-bottom:19px;
+}
+
+.price-card h3{
+  font-family:"Playfair Display",serif;
+  font-size:27px;
+  line-height:1.1;
+  margin-bottom:8px;
+}
+
+.price{
+  font-size:17px;
+  font-weight:700;
+  margin-bottom:8px;
+}
+
+.price-description{
+  color:var(--muted);
+  font-size:12px;
+  min-height:43px;
+  margin-bottom:18px;
+}
+
+.price-card ul{
+  list-style:none;
+  border-top:1px solid var(--line);
+  margin-bottom:21px;
+}
+
+.price-card li{
+  padding:8px 0;
+  border-bottom:1px solid #ECEEF0;
+  color:#53606D;
+  font-size:11px;
+}
+
+.price-card li::before{
+  content:"✓";
+  color:var(--blue);
+  font-weight:700;
+  margin-right:8px;
+}
+
+.price-card .btn{
+  width:100%;
+  margin-top:auto;
+}
+
+.demo-note{
+  margin-top:13px;
+  color:#777F88;
+  font-size:10px;
+}
+
+
+/* =========================
+   AUDIENCE
+========================= */
+
+.audience{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:17px;
+}
+
+.audience-card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:21px;
+  padding:28px;
+}
+
+.audience-card.business{
+  background:var(--navy);
+  color:white;
+  border-color:var(--navy);
+}
+
+.audience-card h3{
+  font-family:"Playfair Display",serif;
+  font-size:29px;
+  margin-bottom:9px;
+}
+
+.audience-card > p{
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:19px;
+}
+
+.business > p{
+  color:#AAB6C3!important;
+}
+
+.tags{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+  margin-bottom:21px;
+}
+
+.tag{
+  padding:8px 10px;
+  background:#F0F1F3;
+  border-radius:8px;
+  color:#56616D;
+  font-size:10px;
+}
+
+.business .tag{
+  background:#172A3D;
+  color:#C0CAD4;
+}
+
+
+/* =========================
+   SECURITY
+========================= */
+
+.security-section{
+  background:#EFF2F5;
+  position:relative;
+  overflow:hidden;
+}
+
+.security-section::before{
+  content:"";
+  position:absolute;
+  width:520px;
+  height:520px;
+  right:-240px;
+  top:-170px;
+  border:1px solid rgba(37,99,235,.1);
+  border-radius:50%;
+}
+
+.security-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border-top:1px solid #D4DAE0;
+  position:relative;
+  z-index:2;
+}
+
+.security-card{
+  padding:23px 30px 23px 0;
+  border-bottom:1px solid #D4DAE0;
+}
+
+.security-card:nth-child(even){
+  padding-left:30px;
+  border-left:1px solid #D4DAE0;
+}
+
+.security-number{
+  color:var(--blue);
+  font-size:11px;
+  font-weight:700;
+  margin-bottom:11px;
+}
+
+.security-card h3{
+  font-size:16px;
+  margin-bottom:7px;
+}
+
+.security-card p{
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.6;
+}
+
+
+/* =========================
+   FAQ
+========================= */
+
+.faq-section{
+  padding-top:65px;
+  padding-bottom:65px;
+}
+
+.faq-layout{
+  display:grid;
+  grid-template-columns:.7fr 1.3fr;
+  gap:75px;
+  align-items:start;
+}
+
+.faq-heading h2{
+  margin-bottom:12px;
+}
+
+.faq-heading p{
+  color:var(--muted);
+  font-size:12px;
+  max-width:290px;
+}
+
+.faq{
+  border-top:1px solid var(--line);
+}
+
+.faq-item{
+  border-bottom:1px solid var(--line);
+}
+
+.faq-question{
+  width:100%;
+  border:0;
+  background:none;
+  padding:15px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  cursor:pointer;
+  text-align:left;
+  font-size:13px;
+  font-weight:700;
+  color:var(--text);
+}
+
+.faq-icon{
+  width:25px;
+  height:25px;
+  border:1px solid #D5D9DE;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:17px;
+  font-weight:400;
+  color:#66717D;
+  transition:.25s ease;
+  flex-shrink:0;
+}
+
+.faq-answer{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .3s ease;
+}
+
+.faq-answer p{
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.6;
+  padding:0 45px 15px 0;
+}
+
+.faq-item.active .faq-answer{
+  max-height:250px;
+}
+
+.faq-item.active .faq-icon{
+  transform:rotate(45deg);
+  color:var(--blue);
+  border-color:#B8C8EA;
+}
+
+
+/* =========================
+   FINAL CTA
+========================= */
+
+.final-cta{
+  background:var(--navy);
+  color:white;
+  text-align:center;
+  padding:90px 20px;
+}
+
+.final-cta h2{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(43px,5vw,65px);
+  line-height:1;
+  letter-spacing:-.045em;
+  margin-bottom:18px;
+}
+
+.final-cta p{
+  color:#B4BFCC;
+  max-width:550px;
+  margin:0 auto 24px;
+  font-size:14px;
+}
+
+.final-cta small{
+  display:block;
+  color:#748292;
+  margin-top:13px;
+  font-size:10px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+  background:#08111C;
+  color:white;
+  padding:55px 0 23px;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.6fr repeat(4,1fr);
+  gap:30px;
+  padding-bottom:40px;
+}
+
+.footer-brand h3{
+  font-size:15px;
+  margin-bottom:12px;
+}
+
+.footer-brand p{
+  color:#718091;
+  font-size:11px;
+  line-height:1.7;
+}
+
+.footer-column h4{
+  color:#9BA7B5;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  margin-bottom:13px;
+}
+
+.footer-column a{
+  display:block;
+  color:#637284;
+  font-size:11px;
+  margin-bottom:7px;
+  transition:.2s ease;
+}
+
+.footer-column a:hover{
+  color:white;
+}
+
+.footer-bottom{
+  border-top:1px solid #1A2735;
+  padding-top:18px;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  color:#566474;
+  font-size:10px;
+}
+
+
+/* =========================================================
+   LEGAL SITUATION MODAL
+========================================================= */
+
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:rgba(7,17,28,.72);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:.3s ease;
+}
+
+.modal-overlay.active{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+
+.situation-modal{
+  width:min(680px,100%);
+  max-height:calc(100vh - 40px);
+  overflow-y:auto;
+  background:#F8F7F3;
+  color:var(--text);
+  border-radius:24px;
+  padding:32px;
+  box-shadow:0 35px 100px rgba(0,0,0,.35);
+  transform:translateY(20px) scale(.98);
+  transition:.3s ease;
+  position:relative;
+}
+
+.modal-overlay.active .situation-modal{
+  transform:translateY(0) scale(1);
+}
+
+.modal-close{
+  position:absolute;
+  top:20px;
+  right:20px;
+  width:36px;
+  height:36px;
+  border:1px solid #D8DDE3;
+  background:white;
+  border-radius:50%;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#65717E;
+  font-size:21px;
+  line-height:1;
+  transition:.2s ease;
+  z-index:2;
+}
+
+.modal-close:hover{
+  color:var(--text);
+  border-color:#AEB8C4;
+  transform:rotate(90deg);
+}
+
+.modal-label{
+  color:#7B8693;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.14em;
+  margin-bottom:9px;
+}
+
+.situation-modal h2{
+  font-family:"Playfair Display",serif;
+  font-size:38px;
+  line-height:1.05;
+  letter-spacing:-.035em;
+  margin-bottom:9px;
+  padding-right:45px;
+}
+
+.modal-description{
+  color:#687483;
+  font-size:13px;
+  line-height:1.6;
+  margin-bottom:25px;
+}
+
+.modal-step{
+  margin-bottom:22px;
+}
+
+.modal-step-title{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:11px;
+}
+
+.modal-step-number{
+  width:24px;
+  height:24px;
+  border-radius:50%;
+  background:#E8EDF7;
+  color:var(--blue);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:10px;
+  flex-shrink:0;
+}
+
+.modal-categories{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+.modal-category{
+  border:1px solid #D8DDE3;
+  background:white;
+  border-radius:11px;
+  padding:11px 10px;
+  text-align:center;
+  cursor:pointer;
+  color:#596572;
+  font-size:11px;
+  transition:.2s ease;
+}
+
+.modal-category:hover{
+  border-color:#AFC2E9;
+  background:#F5F8FF;
+}
+
+.modal-category.active{
+  border-color:var(--blue);
+  background:#EEF4FF;
+  color:var(--blue);
+  box-shadow:0 0 0 2px rgba(37,99,235,.08);
+}
+
+.modal-category:focus-visible{
+  outline:3px solid rgba(37,99,235,.15);
+  outline-offset:2px;
+}
+
+.modal-textarea{
+  width:100%;
+  min-height:145px;
+  height:auto;
+  resize:vertical;
+  border:1px solid #D8DDE3;
+  border-radius:14px;
+  background:white;
+  padding:15px;
+  color:var(--text);
+  outline:none;
+  font-family:"DM Sans",sans-serif;
+  font-size:13px;
+  line-height:1.6;
+  margin-bottom:0;
+  transition:.2s ease;
+}
+
+.modal-textarea:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(37,99,235,.1);
+}
+
+.modal-textarea::placeholder{
+  color:#9AA4AF;
+}
+
+.modal-fields{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.modal-input{
+  width:100%;
+  border:1px solid #D8DDE3;
+  border-radius:11px;
+  background:white;
+  padding:12px 13px;
+  color:var(--text);
+  outline:none;
+  font-size:12px;
+  transition:.2s ease;
+}
+
+.modal-input:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(37,99,235,.08);
+}
+
+.modal-input::placeholder{
+  color:#9AA4AF;
+}
+
+.modal-consent{
+  display:flex;
+  align-items:flex-start;
+  gap:9px;
+  margin:16px 0 8px;
+  color:#7B8693;
+  font-size:10px;
+  line-height:1.5;
+  cursor:pointer;
+}
+
+.modal-consent input{
+  margin-top:2px;
+  accent-color:var(--blue);
+  flex-shrink:0;
+}
+
+.modal-error{
+  display:none;
+  color:#C0392B;
+  font-size:10px;
+  line-height:1.45;
+  margin:0 0 12px;
+}
+
+.modal-error.active{
+  display:block;
+}
+
+.modal-submit{
+  width:100%;
+}
+
+.modal-hint{
+  text-align:center;
+  color:#8A949F;
+  font-size:9px;
+  margin-top:10px;
+}
+
+
+/* =========================
+   MODAL SUCCESS
+========================= */
+
+.modal-success{
+  display:none;
+  text-align:center;
+  padding:25px 10px 10px;
+}
+
+.modal-success.active{
+  display:block;
+}
+
+.modal-form.hidden{
+  display:none;
+}
+
+.success-icon{
+  width:68px;
+  height:68px;
+  border-radius:50%;
+  background:#EAF2FF;
+  color:var(--blue);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  margin:0 auto 20px;
+}
+
+.modal-success h2{
+  padding:0;
+  margin-bottom:12px;
+}
+
+.modal-success p{
+  max-width:450px;
+  margin:0 auto 22px;
+  color:#687483;
+  font-size:13px;
+  line-height:1.65;
+}
+
+.modal-success .btn{
+  min-width:190px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:950px){
+
+  .header-nav{
+    display:none;
+  }
+
+  .hero-grid{
+    grid-template-columns:1fr;
+    gap:35px;
+  }
+
+  .hero-slide{
+    min-height:850px;
+  }
+
+  .steps{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .step:nth-child(2){
+    border-right:0;
+    margin-right:0;
+  }
+
+  .step:nth-child(3),
+  .step:nth-child(4){
+    border-top:1px solid var(--line);
+  }
+
+  .feature-row{
+    grid-template-columns:60px 1fr;
+  }
+
+  .feature-row p{
+    grid-column:2;
+  }
+
+  .situations-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .pricing-grid{
+    grid-template-columns:1fr;
+  }
+
+  .audience{
+    grid-template-columns:1fr;
+  }
+
+  .security-grid{
+    grid-template-columns:1fr;
+  }
+
+  .security-card:nth-child(even){
+    border-left:0;
+    padding-left:0;
+  }
+
+  .faq-layout{
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .swipe-control{
+    right:0;
+    width:64px;
+  }
+
+}
+
+
+@media(max-width:600px){
+
+  .container,
+  .hero-content{
+    width:calc(100% - 28px);
+  }
+
+  .header{
+    padding:17px 0;
+  }
+
+  .logo{
+    font-size:15px;
+  }
+
+  .logo::after{
+    width:75px;
+  }
+
+  .hero-slide{
+    padding:88px 0 82px;
+    min-height:850px;
+  }
+
+  .hero h1{
+    font-size:48px;
+    line-height:.98;
+  }
+
+  .hero h1 .title-accent::after{
+    width:65%;
+  }
+
+  .hero-description{
+    font-size:15px;
+  }
+
+  .hero-actions{
+    flex-direction:column;
+  }
+
+  .hero-actions .btn{
+    width:100%;
+  }
+
+  .trust{
+    flex-direction:column;
+    gap:9px;
+  }
+
+  .interaction{
+    padding:23px;
+  }
+
+  .interaction h2{
+    font-size:27px;
+  }
+
+  .swipe-control{
+    display:flex;
+    width:52px;
+    height:150px;
+    right:0;
+    border-radius:18px 0 0 18px;
+  }
+
+  .swipe-control-arrow{
+    width:31px;
+    height:31px;
+    font-size:19px;
+  }
+
+  .nav-screen-top{
+    display:block;
+    margin-bottom:25px;
+  }
+
+  .nav-screen h2{
+    font-size:49px;
+    margin-bottom:15px;
+  }
+
+  .nav-note{
+    max-width:300px;
+  }
+
+  .hero-nav-item{
+    grid-template-columns:45px 1fr 25px;
+    gap:10px;
+    padding:16px 0;
+  }
+
+  .hero-nav-title{
+    font-size:15px;
+  }
+
+  .section{
+    padding:62px 0;
+  }
+
+  .section-header{
+    display:block;
+    margin-bottom:30px;
+  }
+
+  .section-intro{
+    margin-top:14px;
+  }
+
+  .steps{
+    grid-template-columns:1fr;
+  }
+
+  .step,
+  .step:nth-child(2),
+  .step:nth-child(3){
+    border-right:0;
+    margin-right:0;
+    border-top:1px solid var(--line);
+    padding:20px 0;
+  }
+
+  .step:first-child{
+    border-top:0;
+  }
+
+  .feature-bottom,
+  .situation-bottom{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .situations-grid{
+    grid-template-columns:1fr;
+  }
+
+  .situation-card{
+    min-height:auto;
+  }
+
+  .tags{
+    grid-template-columns:1fr;
+  }
+
+  .security-card,
+  .security-card:nth-child(even){
+    padding:20px 0;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr;
+    gap:25px;
+  }
+
+  .footer-bottom{
+    flex-direction:column;
+  }
+
+
+  /* MODAL MOBILE */
+
+  .modal-overlay{
+    padding:10px;
+    align-items:flex-end;
+  }
+
+  .situation-modal{
+    border-radius:22px;
+    padding:24px 20px;
+    max-height:calc(100vh - 20px);
+  }
+
+  .situation-modal h2{
+    font-size:31px;
+  }
+
+  .modal-categories{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .modal-fields{
+    grid-template-columns:1fr;
+  }
+
+  .modal-close{
+    top:16px;
+    right:16px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+  <div class="container header-inner">
+
+
+<a href="#" class="logo">
+
+  <span class="logo-mark"></span>
+
+  <span>
+    Юридичний помічник 24/7
+  </span>
+
+</a>
+
+<nav class="header-nav">
+
+  <a href="#how">
+    Як це працює
+  </a>
+
+  <a href="#features">
+    Можливості
+  </a>
+
+  <a href="#business">
+    Для бізнесу
+  </a>
+
+  <a href="#" class="login">
+    Увійти
+  </a>
+
+</nav>
+
+
+  </div>
+
+</header>
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+  <div class="hero-slider" id="heroSlider">
+
+
+<div class="hero-track" id="heroTrack">
+
+
+  <!-- SCREEN 1 -->
+
+  <div class="hero-slide">
+
+    <div class="hero-content">
+
+      <div class="hero-grid">
+
+        <div>
+
+          <h1>
+
+            <span class="title-line">
+              Є юридична
+            </span>
+
+            <span class="title-accent">
+              проблема?
+            </span>
+
+          </h1>
+
+          <p class="hero-description">
+            Розкажіть, що сталося — ми допоможемо розібратися у вашій ситуації та зрозуміти, що робити далі.
+          </p>
+
+          <div class="hero-actions">
+
+            <button
+              type="button"
+              class="btn btn-primary open-situation"
+            >
+              Розібрати мою ситуацію →
+            </button>
+
+            <a href="#faq" class="btn btn-outline">
+              Поставити запитання
+            </a>
+
+          </div>
+
+          <div class="trust">
+
+            <span>
+              За сервісом стоять реальні юристи
+            </span>
+
+            <span>
+              ШІ 24/7
+            </span>
+
+            <span>
+              Професійна допомога
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- INTERACTION -->
+
+        <div class="interaction" id="start">
+
+          <div class="interaction-label">
+            ПОЧНІТЬ ЗІ СВОЄЇ ІСТОРІЇ
+          </div>
+
+          <h2>
+            Розкажіть, що сталося
+          </h2>
+
+          <p>
+            Не потрібно знати юридичні терміни або правильно формулювати питання.
+          </p>
+
+          <label class="form-label" for="situation">
+            Що сталося?
+          </label>
+
+          <textarea
+            id="situation"
+            placeholder="Наприклад: мене звільнили, але не виплатили зарплату..."
+          ></textarea>
+
+          <button
+            class="btn btn-primary"
+            type="button"
+            id="heroStartButton"
+          >
+            Розібрати мою ситуацію →
+          </button>
+
+          <div class="categories">
+
+            <span class="category">Сім'я</span>
+            <span class="category">Робота</span>
+            <span class="category">Борги</span>
+            <span class="category">Нерухомість</span>
+            <span class="category">ДТП</span>
+            <span class="category">Договори</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- SCREEN 2 -->
+
+  <div class="hero-slide">
+
+    <div class="hero-content">
+
+      <div class="nav-screen">
+
+        <div class="nav-screen-top">
+
+          <h2>
+            ЩО ВАС<br>
+            ЦІКАВИТЬ?
+          </h2>
+
+          <p class="nav-note">
+            Оберіть напрямок або перейдіть до потрібного розділу. Ви можете повернутися до цього меню у будь-який момент.
+          </p>
+
+        </div>
+
+        <div class="hero-navigation">
+
+          <a href="#how" class="hero-nav-item">
+            <span class="hero-nav-number">01</span>
+            <span class="hero-nav-title">Як це працює</span>
+            <span class="hero-nav-arrow">→</span>
+          </a>
+
+          <a href="#features" class="hero-nav-item">
+            <span class="hero-nav-number">02</span>
+            <span class="hero-nav-title">Можливості</span>
+            <span class="hero-nav-arrow">→</span>
+          </a>
+
+          <a href="#situations" class="hero-nav-item">
+            <span class="hero-nav-number">03</span>
+            <span class="hero-nav-title">Ситуації</span>
+            <span class="hero-nav-arrow">→</span>
+          </a>
+
+          <a href="#levels" class="hero-nav-item">
+            <span class="hero-nav-number">04</span>
+            <span class="hero-nav-title">Рівні допомоги</span>
+            <span class="hero-nav-arrow">→</span>
+          </a>
+
+          <a href="#audience" class="hero-nav-item">
+            <span class="hero-nav-number">05</span>
+            <span class="hero-nav-title">Для кого</span>
+            <span class="hero-nav-arrow">→</span>
+          </a>
+
+          <a href="#security" class="hero-nav-item">
+            <span class="hero-nav-number">06</span>
+            <span class="hero-nav-title">Конфіденційність</span>
+            <span class="hero-nav-arrow">→</span>
+          </a>
+
+          <a href="#faq" class="hero-nav-item">
+            <span class="hero-nav-number">07</span>
+            <span class="hero-nav-title">Часті запитання</span>
+            <span class="hero-nav-arrow">→</span>
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- SIDE SWIPE CONTROL -->
+
+<button
+  class="swipe-control"
+  id="swipeControl"
+  aria-label="Перейти далі"
+  type="button"
+>
+
+  <span
+    class="swipe-control-arrow"
+    id="swipeArrow"
+  >→</span>
+
+</button>
+
+
+<!-- CONTROLS -->
+
+<div class="hero-controls">
+
+  <button class="arrow" id="prev" type="button">
+    ←
+  </button>
+
+  <div class="dots">
+
+    <span
+      class="dot active"
+      data-slide="0"
+      role="button"
+      tabindex="0"
+      aria-label="Перший екран"
+    ></span>
+
+    <span
+      class="dot"
+      data-slide="1"
+      role="button"
+      tabindex="0"
+      aria-label="Другий екран"
+    ></span>
+
+  </div>
+
+  <button class="arrow" id="next" type="button">
+    →
+  </button>
+
+</div>
+
+
+  </div>
+
+</section>
+
+<!-- =========================
+     01 HOW
+========================= -->
+
+<section class="section" id="how">
+
+  <div class="container">
+
+
+<div class="section-header">
+
+  <h2>
+    Як це працює?
+  </h2>
+
+  <p class="section-intro">
+    Отримайте зрозумілу відповідь на юридичне питання у кілька простих кроків.
+  </p>
+
+</div>
+
+<div class="steps">
+
+  <div class="step">
+
+    <div class="step-number">01</div>
+
+    <h3>
+      Опишіть ситуацію
+    </h3>
+
+    <p>
+      Розкажіть своїми словами, що сталося. Не потрібно знати юридичні терміни або правильно формулювати питання.
+    </p>
+
+  </div>
+
+  <div class="step">
+
+    <div class="step-number">02</div>
+
+    <h3>
+      Отримайте первинний розбір
+    </h3>
+
+    <p>
+      Юридичний помічник аналізує вашу ситуацію та пояснює, які права, обов'язки та можливі варіанти дій можуть стосуватися вашого випадку.
+    </p>
+
+  </div>
+
+  <div class="step">
+
+    <div class="step-number">03</div>
+
+    <h3>
+      Зрозумійте, що робити далі
+    </h3>
+
+    <p>
+      Отримайте структурований план наступних кроків, необхідні документи та важливі моменти, на які варто звернути увагу.
+    </p>
+
+  </div>
+
+  <div class="step">
+
+    <div class="step-number">04</div>
+
+    <h3>
+      За потреби зверніться до фахівця
+    </h3>
+
+    <p>
+      Якщо питання потребує професійної юридичної допомоги, ви зможете підготуватися до консультації та звернутися до фахівця.
+    </p>
+
+  </div>
+
+</div>
+
+
+  </div>
+
+</section>
+
+<!-- =========================
+     02 FEATURES
+========================= -->
+
+<section class="section features-section" id="features">
+
+  <div class="container">
+
+
+<div class="section-header">
+
+  <h2>
+    Можливості
+  </h2>
+
+  <p class="section-intro">
+    Все необхідне, щоб розібратися у юридичній ситуації — в одному місці.
+  </p>
+
+</div>
+
+<div class="feature-list">
+
+  <div class="feature-row">
+    <div class="feature-number">01</div>
+    <h3>Аналіз юридичної ситуації</h3>
+    <p>Опишіть проблему своїми словами та отримайте структурований розбір ситуації.</p>
+  </div>
+
+  <div class="feature-row">
+    <div class="feature-number">02</div>
+    <h3>Пояснення законодавства</h3>
+    <p>Розберемо складні юридичні питання простою та зрозумілою мовою.</p>
+  </div>
+
+  <div class="feature-row">
+    <div class="feature-number">03</div>
+    <h3>Аналіз документів</h3>
+    <p>Завантажте документ, щоб знайти важливі положення, ризики та моменти, на які варто звернути увагу.</p>
+  </div>
+
+  <div class="feature-row">
+    <div class="feature-number">04</div>
+    <h3>Перевірка договорів</h3>
+    <p>Допоможемо проаналізувати умови договору та звернути увагу на потенційно проблемні положення.</p>
+  </div>
+
+  <div class="feature-row">
+    <div class="feature-number">05</div>
+    <h3>Підготовка документів</h3>
+    <p>Допоможемо підготувати чернетку заяви, звернення, претензії або іншого юридичного документа.</p>
+  </div>
+
+  <div class="feature-row">
+    <div class="feature-number">06</div>
+    <h3>Підготовка до консультації</h3>
+    <p>Сформуємо список важливих питань та допоможемо підготувати інформацію для розмови з юристом.</p>
+  </div>
+
+</div>
+
+<div class="feature-bottom">
+
+  <div class="feature-bottom-text">
+
+    <strong>
+      Не знаєте, з чого почати?
+    </strong>
+
+    <span>
+      Опишіть свою ситуацію — юридичний помічник підкаже, з чого розпочати.
+    </span>
+
+  </div>
+
+  <button
+    type="button"
+    class="btn btn-primary open-situation"
+  >
+    Розпочати →
+  </button>
+
+</div>
+
+
+  </div>
+
+</section>
+
+<!-- =========================
+     03 SITUATIONS
+========================= -->
+
+<section class="section situations-section" id="situations">
+
+  <div class="container">
+
+
+<div class="section-header">
+
+  <h2>
+    З якими питаннями допомагаємо?
+  </h2>
+
+  <p class="section-intro">
+    Опишіть свою ситуацію — навіть якщо не знаєте, як правильно сформулювати юридичне питання.
+  </p>
+
+</div>
+
+<div class="situations-grid">
+
+  <div class="situation-card">
+    <h3>Сім'я та стосунки</h3>
+    <p>Розлучення, аліменти, опіка над дітьми, поділ майна.</p>
+  </div>
+
+  <div class="situation-card">
+    <h3>Робота</h3>
+    <p>Звільнення, зарплата, трудовий договір, відпустка, права працівника.</p>
+  </div>
+
+  <div class="situation-card">
+    <h3>Гроші та борги</h3>
+    <p>Борги, кредити, повернення коштів, фінансові спори.</p>
+  </div>
+
+  <div class="situation-card">
+    <h3>Нерухомість</h3>
+    <p>Купівля та продаж житла, оренда, право власності, спори.</p>
+  </div>
+
+  <div class="situation-card">
+    <h3>Автомобіль та ДТП</h3>
+    <p>ДТП, страхування, штрафи, відшкодування збитків.</p>
+  </div>
+
+  <div class="situation-card">
+    <h3>Військова служба</h3>
+    <p>Документи, проходження служби, соціальні гарантії та права.</p>
+  </div>
+
+  <div class="situation-card">
+    <h3>Державні органи</h3>
+    <p>Звернення, документи, адміністративні питання, оскарження рішень.</p>
+  </div>
+
+  <div class="situation-card">
+    <h3>Договори</h3>
+    <p>Перевірка умов, ризики, розірвання та підготовка договорів.</p>
+  </div>
+
+</div>
+
+<div class="situation-bottom">
+
+  <p>
+    <strong>Не знайшли свою ситуацію?</strong><br>
+    Це не проблема. Опишіть її своїми словами — юридичний помічник допоможе визначити, з чого почати.
+  </p>
+
+  <button
+    type="button"
+    class="btn btn-primary open-situation"
+  >
+    Описати мою ситуацію →
+  </button>
+
+</div>
+
+
+  </div>
+
+</section>
+
+<!-- =========================
+     04 LEVELS
+========================= -->
+
+<section class="section levels-section" id="levels">
+
+  <div class="container">
+
+
+<div class="section-header">
+
+  <h2>
+    Як вам зручніше отримати допомогу?
+  </h2>
+
+  <p class="section-intro">
+    Виберіть рівень підтримки залежно від вашої ситуації.
+  </p>
+
+</div>
+
+<div class="pricing-grid">
+
+  <div class="price-card">
+
+    <div class="price-label">
+      01 — САМОСТІЙНО
+    </div>
+
+    <h3>
+      Розібратися самостійно
+    </h3>
+
+    <div class="price">
+      Безкоштовно
+    </div>
+
+    <p class="price-description">
+      Для тих, хто хоче спочатку самостійно зрозуміти свою ситуацію.
+    </p>
+
+    <ul>
+      <li>Первинний розбір з допомогою ШІ</li>
+      <li>Відповіді на юридичні питання</li>
+      <li>Пояснення законів простою мовою</li>
+      <li>Можливі наступні кроки</li>
+    </ul>
+
+    <button
+      type="button"
+      class="btn btn-primary open-situation"
+    >
+      Розпочати безкоштовно
+    </button>
+
+  </div>
+
+
+  <div class="price-card featured">
+
+    <div class="price-label">
+      02 — ГЛИБШИЙ РОЗБІР
+    </div>
+
+    <h3>
+      Індивідуальний розбір
+    </h3>
+
+    <div class="price">
+      від 299 грн
+    </div>
+
+    <p class="price-description">
+      Коли хочеться отримати більш глибокий розбір саме вашої ситуації.
+    </p>
+
+    <ul>
+      <li>Усе з безкоштовного рівня</li>
+      <li>Детальний аналіз ситуації</li>
+      <li>Аналіз наданих документів</li>
+      <li>Можливі ризики та варіанти дій</li>
+      <li>Персональний план наступних кроків</li>
+    </ul>
+
+    <button
+      type="button"
+      class="btn btn-primary open-situation"
+    >
+      Замовити розбір →
+    </button>
+
+  </div>
+
+
+  <div class="price-card">
+
+    <div class="price-label">
+      03 — ФАХОВА ДОПОМОГА
+    </div>
+
+    <h3>
+      Повний супровід
+    </h3>
+
+    <div class="price">
+      Індивідуальна вартість
+    </div>
+
+    <p class="price-description">
+      Коли ви хочете передати юридичне питання професіоналам.
+    </p>
+
+    <ul>
+      <li>Аналіз ситуації та документів</li>
+      <li>Підготовка необхідних документів</li>
+      <li>Консультація з юристом</li>
+      <li>Індивідуальна стратегія дій</li>
+      <li>Супровід за вашим питанням</li>
+    </ul>
+
+    <button
+      type="button"
+      class="btn btn-primary open-situation"
+    >
+      Звернутися до юристів →
+    </button>
+
+  </div>
+
+</div>
+
+<div class="demo-note">
+  * Вартість індивідуального розбору наведена як демонстраційна та може бути змінена перед запуском сервісу.
+</div>
+
+
+  </div>
+
+</section>
+
+<!-- =========================
+     05 AUDIENCE
+========================= -->
+
+<section class="section" id="audience">
+
+  <div class="container">
+
+
+<div class="section-header">
+
+  <h2>
+    Для кого підходить юридичний помічник?
+  </h2>
+
+  <p class="section-intro">
+    Допомагаємо розібратися з юридичними питаннями — у повсякденному житті та в бізнесі.
+  </p>
+
+</div>
+
+<div class="audience">
+
+  <div class="audience-card">
+
+    <h3>
+      Для громадян
+    </h3>
+
+    <p>
+      Отримуйте допомогу, коли виникають юридичні питання у повсякденному житті.
+    </p>
+
+    <div class="tags">
+
+      <span class="tag">Сімейні питання</span>
+      <span class="tag">Робота та трудові права</span>
+      <span class="tag">Житло та оренда</span>
+      <span class="tag">ДТП та автомобіль</span>
+      <span class="tag">Борги та фінансові питання</span>
+      <span class="tag">Документи та державні органи</span>
+      <span class="tag">Військова служба</span>
+      <span class="tag">Договори та особисті угоди</span>
+
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-primary open-situation"
+    >
+      Розібрати мою ситуацію →
+    </button>
+
+  </div>
+
+
+  <div class="audience-card business" id="business">
+
+    <h3>
+      Для бізнесу
+    </h3>
+
+    <p>
+      Допомагаємо підприємцям швидше розбиратися з юридичними питаннями та документами.
+    </p>
+
+    <div class="tags">
+
+      <span class="tag">Договори з клієнтами та партнерами</span>
+      <span class="tag">Перевірка юридичних документів</span>
+      <span class="tag">Трудові питання</span>
+      <span class="tag">Відносини з контрагентами</span>
+      <span class="tag">Претензії та звернення</span>
+      <span class="tag">Юридичні ризики</span>
+      <span class="tag">Підготовка документів</span>
+      <span class="tag">Підготовка до консультації з юристом</span>
+
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-primary open-situation"
+    >
+      Для бізнесу →
+    </button>
+
+  </div>
+
+</div>
+
+
+  </div>
+
+</section>
+
+<!-- =========================
+     06 SECURITY
+========================= -->
+
+<section class="section security-section" id="security">
+
+  <div class="container">
+
+
+<div class="section-header">
+
+  <h2>
+    Ваші дані — під вашим контролем
+  </h2>
+
+  <p class="section-intro">
+    Ми розуміємо, наскільки важливою є конфіденційність юридичних питань. Тому пояснюємо прозоро, як працює сервіс і що відбувається з вашими даними.
+  </p>
+
+</div>
+
+<div class="security-grid">
+
+  <div class="security-card">
+
+    <div class="security-number">
+      01
+    </div>
+
+    <h3>
+      Конфіденційність
+    </h3>
+
+    <p>
+      Ваші юридичні питання можуть містити особисту інформацію. Ми розробляємо сервіс з урахуванням принципів конфіденційності та захисту даних.
+    </p>
+
+  </div>
+
+  <div class="security-card">
+
+    <div class="security-number">
+      02
+    </div>
+
+    <h3>
+      Прозорість
+    </h3>
+
+    <p>
+      Ви повинні розуміти, які дані надаєте сервісу та для чого вони використовуються.
+    </p>
+
+  </div>
+
+  <div class="security-card">
+
+    <div class="security-number">
+      03
+    </div>
+
+    <h3>
+      Контроль
+    </h3>
+
+    <p>
+      Користувач має контролювати свою інформацію та мати можливість керувати своїми даними відповідно до правил сервісу.
+    </p>
+
+  </div>
+
+  <div class="security-card">
+
+    <div class="security-number">
+      04
+    </div>
+
+    <h3>
+      Людина залишається в центрі
+    </h3>
+
+    <p>
+      Юридичний помічник допомагає розібратися в ситуації, але не замінює професійного юриста у випадках, коли потрібна індивідуальна правова допомога.
+    </p>
+
+  </div>
+
+</div>
+
+
+  </div>
+
+</section>
+
+<!-- =========================
+     07 FAQ
+========================= -->
+
+<section class="section faq-section" id="faq">
+
+  <div class="container">
+
+
+<div class="faq-layout">
+
+  <div class="faq-heading">
+
+    <h2>
+      Часті запитання
+    </h2>
+
+    <p>
+      Коротко відповідаємо на найважливіші питання.
+    </p>
+
+  </div>
+
+  <div class="faq">
+
+    <div class="faq-item">
+
+      <button class="faq-question" type="button">
+
+        <span>
+          Хто стоїть за юридичним помічником?
+        </span>
+
+        <span class="faq-icon">
+          +
+        </span>
+
+      </button>
+
+      <div class="faq-answer">
+
+        <p>
+          Юридичний помічник поєднує технології ШІ та юридичну експертизу. Сервіс створений для того, щоб допомогти швидше розібратися у своїй ситуації, зрозуміти можливі наступні кроки та, за потреби, підготуватися до звернення до юриста.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="faq-item">
+
+      <button class="faq-question" type="button">
+
+        <span>
+          А якщо я нічого не розумію в законах?
+        </span>
+
+        <span class="faq-icon">
+          +
+        </span>
+
+      </button>
+
+      <div class="faq-answer">
+
+        <p>
+          Це нормально. Просто розкажіть, що сталося, своїми словами. Не потрібно знати юридичні терміни.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="faq-item">
+
+      <button class="faq-question" type="button">
+
+        <span>
+          Я можу просто описати свою проблему?
+        </span>
+
+        <span class="faq-icon">
+          +
+        </span>
+
+      </button>
+
+      <div class="faq-answer">
+
+        <p>
+          Так. Напишіть, що сталося, так, як розповіли б це іншій людині. Помічник допоможе розібратися.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="faq-item">
+
+      <button class="faq-question" type="button">
+
+        <span>
+          А мої документи можна перевірити?
+        </span>
+
+        <span class="faq-icon">
+          +
+        </span>
+
+      </button>
+
+      <div class="faq-answer">
+
+        <p>
+          Так, якщо ця функція доступна у вашій версії сервісу. Ви зможете завантажити документ та отримати пояснення щодо його змісту.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="faq-item">
+
+      <button class="faq-question" type="button">
+
+        <span>
+          А мої дані захищені?
+        </span>
+
+        <span class="faq-icon">
+          +
+        </span>
+
+      </button>
+
+      <div class="faq-answer">
+
+        <p>
+          Ми приділяємо особливу увагу конфіденційності. Перед використанням сервісу ви зможете ознайомитися з правилами обробки ваших даних.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="faq-item">
+
+      <button class="faq-question" type="button">
+
+        <span>
+          Скільки це коштує?
+        </span>
+
+        <span class="faq-icon">
+          +
+        </span>
+
+      </button>
+
+      <div class="faq-answer">
+
+        <p>
+          Вартість залежить від функцій та обраного тарифу. Детальні умови будуть доступні перед початком використання платних функцій.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+  </div>
+
+</section>
+
+<!-- =========================
+     FINAL CTA
+========================= -->
+
+<section class="final-cta">
+
+  <div class="container">
+
+
+<h2>
+  Не знаєте, що робити далі?
+</h2>
+
+<p>
+  Розкажіть нам, що сталося. Опишіть свою ситуацію своїми словами — юридичний помічник допоможе розібратися та визначити наступні кроки.
+</p>
+
+<button
+  type="button"
+  class="btn btn-primary open-situation"
+>
+  Розібрати мою ситуацію →
+</button>
+
+<small>
+  Без складних юридичних термінів. Почніть зі своєї історії.
+</small>
+
+
+  </div>
+
+</section>
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+  <div class="container">
+
+
+<div class="footer-grid">
+
+  <div class="footer-brand">
+
+    <h3>
+      Юридичний помічник 24/7
+    </h3>
+
+    <p>
+      Зрозуміти юридичну проблему.<br>
+      Знайти наступний крок.<br>
+      Ваш цифровий помічник у юридичних питаннях.
+    </p>
+
+  </div>
+
+  <div class="footer-column">
+
+    <h4>
+      Сервіс
+    </h4>
+
+    <a href="#how">Як це працює</a>
+    <a href="#features">Можливості</a>
+    <a href="#audience">Для кого</a>
+    <a href="#faq">Часті запитання</a>
+
+  </div>
+
+  <div class="footer-column">
+
+    <h4>
+      Допомога
+    </h4>
+
+    <a href="#situations">
+      З якими питаннями допомагаємо
+    </a>
+
+    <a href="#security">
+      Безпека та конфіденційність
+    </a>
+
+    <a href="#">
+      Зв'язатися з нами
+    </a>
+
+  </div>
+
+  <div class="footer-column">
+
+    <h4>
+      Документи
+    </h4>
+
+    <a href="#">
+      Політика конфіденційності
+    </a>
+
+    <a href="#">
+      Умови використання
+    </a>
+
+    <a href="#">
+      Обробка персональних даних
+    </a>
+
+  </div>
+
+  <div class="footer-column">
+
+    <h4>
+      Зв'язатися з нами
+    </h4>
+
+    <a href="#">
+      hello@...
+    </a>
+
+  </div>
+
+</div>
+
+<div class="footer-bottom">
+
+  <span>
+    © 2026 Юридичний помічник 24/7. Усі права захищено.
+  </span>
+
+  <span>
+    Україна · Українська
+  </span>
+
+</div>
+
+
+  </div>
+
+</footer>
+
+<!-- =========================================================
+     LEGAL SITUATION MODAL
+========================================================= -->
+
+<div
+  class="modal-overlay"
+  id="situationModal"
+  aria-hidden="true"
+>
+
+  <div
+    class="situation-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+  >
+
+
+<button
+  class="modal-close"
+  id="modalClose"
+  type="button"
+  aria-label="Закрити"
+>
+  ×
+</button>
+
+
+<!-- =========================
+     FORM
+========================= -->
+
+<div
+  class="modal-form"
+  id="modalForm"
+>
+
+  <div class="modal-label">
+    КРОК 1 — ОПИШІТЬ СВОЮ СИТУАЦІЮ
+  </div>
+
+  <h2 id="modalTitle">
+    Розберімося разом
+  </h2>
+
+  <p class="modal-description">
+    Розкажіть, що сталося, своїми словами. Не потрібно знати юридичні терміни або правильно формулювати питання.
+  </p>
+
+
+  <!-- CATEGORY -->
+
+  <div class="modal-step">
+
+    <div class="modal-step-title">
+
+      <span class="modal-step-number">
+        1
+      </span>
+
+      <span>
+        Яка це ситуація?
+      </span>
+
+    </div>
+
+    <div class="modal-categories">
+
+      <button
+        class="modal-category"
+        type="button"
+        data-category="Сім'я"
+      >
+        Сім'я
+      </button>
+
+      <button
+        class="modal-category"
+        type="button"
+        data-category="Робота"
+      >
+        Робота
+      </button>
+
+      <button
+        class="modal-category"
+        type="button"
+        data-category="Борги"
+      >
+        Борги
+      </button>
+
+      <button
+        class="modal-category"
+        type="button"
+        data-category="Нерухомість"
+      >
+        Нерухомість
+      </button>
+
+      <button
+        class="modal-category"
+        type="button"
+        data-category="ДТП"
+      >
+        ДТП
+      </button>
+
+      <button
+        class="modal-category"
+        type="button"
+        data-category="Договори"
+      >
+        Договори
+      </button>
+
+      <button
+        class="modal-category"
+        type="button"
+        data-category="Військова служба"
+      >
+        Військова служба
+      </button>
+
+      <button
+        class="modal-category"
+        type="button"
+        data-category="Державні органи"
+      >
+        Державні органи
+      </button>
+
+      <button
+        class="modal-category"
+        type="button"
+        data-category="Інше"
+      >
+        Інше
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- DESCRIPTION -->
+
+  <div class="modal-step">
+
+    <div class="modal-step-title">
+
+      <span class="modal-step-number">
+        2
+      </span>
+
+      <span>
+        Що сталося?
+      </span>
+
+    </div>
+
+    <textarea
+      class="modal-textarea"
+      id="modalSituation"
+      placeholder="Наприклад: мене звільнили, але роботодавець не виплатив зарплату за останній місяць..."
+    ></textarea>
+
+  </div>
+
+
+  <!-- CONTACT -->
+
+  <div class="modal-step">
+
+    <div class="modal-step-title">
+
+      <span class="modal-step-number">
+        3
+      </span>
+
+      <span>
+        Як з вами зв'язатися?
+      </span>
+
+    </div>
+
+    <div class="modal-fields">
+
+      <input
+        class="modal-input"
+        id="modalName"
+        type="text"
+        placeholder="Ваше ім'я"
+        autocomplete="name"
+      >
+
+      <input
+        class="modal-input"
+        id="modalContact"
+        type="text"
+        placeholder="Телефон або email"
+        autocomplete="email"
+      >
+
+    </div>
+
+  </div>
+
+
+  <!-- CONSENT -->
+
+  <label class="modal-consent">
+
+    <input
+      type="checkbox"
+      id="modalConsent"
+    >
+
+    <span>
+      Погоджуюся на обробку наданої інформації відповідно до правил сервісу.
+    </span>
+
+  </label>
+
+
+  <!-- ERROR -->
+
+  <div
+    class="modal-error"
+    id="modalError"
+    role="alert"
+  ></div>
+
+
+  <!-- SUBMIT -->
+
+  <button
+    class="btn btn-primary modal-submit"
+    id="modalSubmit"
+    type="button"
+  >
+    Надіслати ситуацію →
+  </button>
+
+  <div class="modal-hint">
+    Зараз це демонстраційна frontend-версія. Дані ще не передаються на сервер.
+  </div>
+
+</div>
+
+
+<!-- =========================
+     SUCCESS
+========================= -->
+
+<div
+  class="modal-success"
+  id="modalSuccess"
+>
+
+  <div class="success-icon">
+    ✓
+  </div>
+
+  <div class="modal-label">
+    СИТУАЦІЮ ПРИЙНЯТО
+  </div>
+
+  <h2>
+    Дякуємо за звернення
+  </h2>
+
+  <p>
+    Ваш опис збережено у демонстраційному сценарії. На наступному етапі підключимо backend та AI, щоб система могла автоматично проаналізувати вашу ситуацію.
+  </p>
+
+  <button
+    class="btn btn-primary"
+    id="modalDone"
+    type="button"
+  >
+    Повернутися до сайту
+  </button>
+
+</div>
+
+
+  </div>
+
+</div>
+
+<script>
+
+
+/* =========================================================
+   HERO SLIDER
+========================================================= */
+
+const track =
+  document.getElementById("heroTrack");
+
+const slider =
+  document.getElementById("heroSlider");
+
+const dots =
+  document.querySelectorAll(".dot");
+
+const nextButton =
+  document.getElementById("next");
+
+const prevButton =
+  document.getElementById("prev");
+
+const swipeControl =
+  document.getElementById("swipeControl");
+
+const swipeArrow =
+  document.getElementById("swipeArrow");
+
+let currentSlide = 0;
+
+
+/* =========================
+   SHOW SLIDE
+========================= */
+
+function showSlide(index){
+
+  currentSlide = index;
+
+  track.style.transform =
+    `translateX(-${index * 50}%)`;
+
+  dots.forEach((dot,i)=>{
+
+    dot.classList.toggle(
+      "active",
+      i === index
+    );
+
+  });
+
+
+  /* SIDE ARROW */
+
+  if(index === 0){
+
+    swipeArrow.textContent = "→";
+
+    swipeControl.classList.remove("back");
+
+    swipeControl.setAttribute(
+      "aria-label",
+      "Перейти далі"
+    );
+
+  }else{
+
+    swipeArrow.textContent = "←";
+
+    swipeControl.classList.add("back");
+
+    swipeControl.setAttribute(
+      "aria-label",
+      "Повернутися назад"
+    );
+
+  }
+
+}
+
+
+/* =========================
+   SIDE ARROW CLICK
+========================= */
+
+swipeControl.addEventListener("click",()=>{
+
+  showSlide(
+    currentSlide === 0 ? 1 : 0
+  );
+
+});
+
+
+/* =========================
+   BOTTOM ARROWS
+========================= */
+
+nextButton.addEventListener("click",()=>{
+
+  showSlide(
+    currentSlide === 0 ? 1 : 0
+  );
+
+});
+
+prevButton.addEventListener("click",()=>{
+
+  showSlide(
+    currentSlide === 0 ? 1 : 0
+  );
+
+});
+
+
+/* =========================
+   DOTS
+========================= */
+
+dots.forEach(dot=>{
+
+  dot.addEventListener("click",()=>{
+
+    showSlide(
+      Number(dot.dataset.slide)
+    );
+
+  });
+
+
+  dot.addEventListener("keydown",(event)=>{
+
+    if(
+      event.key === "Enter" ||
+      event.key === " "
+    ){
+
+      event.preventDefault();
+
+      showSlide(
+        Number(dot.dataset.slide)
+      );
+
+    }
+
+  });
+
+});
+
+
+/* =========================
+   TOUCH SWIPE
+========================= */
+
+let touchStart = 0;
+let touchEnd = 0;
+
+slider.addEventListener("touchstart",(event)=>{
+
+  touchStart =
+    event.touches[0].clientX;
+
+});
+
+slider.addEventListener("touchend",(event)=>{
+
+  touchEnd =
+    event.changedTouches[0].clientX;
+
+  const distance =
+    touchStart - touchEnd;
+
+
+  if(distance > 60){
+
+    showSlide(1);
+
+  }
+
+
+  if(distance < -60){
+
+    showSlide(0);
+
+  }
+
+});
+
+
+/* =========================
+   MOUSE DRAG
+========================= */
+
+let mouseStart = 0;
+let dragging = false;
+
+slider.addEventListener("mousedown",(event)=>{
+
+  dragging = true;
+
+  mouseStart =
+    event.clientX;
+
+});
+
+slider.addEventListener("mouseup",(event)=>{
+
+  if(!dragging) return;
+
+  dragging = false;
+
+  const distance =
+    mouseStart - event.clientX;
+
+
+  if(distance > 70){
+
+    showSlide(1);
+
+  }
+
+
+  if(distance < -70){
+
+    showSlide(0);
+
+  }
+
+});
+
+slider.addEventListener("mouseleave",()=>{
+
+  dragging = false;
+
+});
+
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+document
+.querySelectorAll(".faq-question")
+.forEach(button=>{
+
+  button.addEventListener("click",()=>{
+
+    const item =
+      button.parentElement;
+
+    document
+    .querySelectorAll(".faq-item")
+    .forEach(other=>{
+
+      if(other !== item){
+
+        other.classList.remove("active");
+
+      }
+
+    });
+
+    item.classList.toggle("active");
+
+  });
+
+});
+
+
+/* =========================================================
+   LEGAL SITUATION MODAL
+========================================================= */
+
+const situationModal =
+  document.getElementById("situationModal");
+
+const modalClose =
+  document.getElementById("modalClose");
+
+const modalForm =
+  document.getElementById("modalForm");
+
+const modalSuccess =
+  document.getElementById("modalSuccess");
+
+const modalSituation =
+  document.getElementById("modalSituation");
+
+const modalName =
+  document.getElementById("modalName");
+
+const modalContact =
+  document.getElementById("modalContact");
+
+const modalConsent =
+  document.getElementById("modalConsent");
+
+const modalSubmit =
+  document.getElementById("modalSubmit");
+
+const modalDone =
+  document.getElementById("modalDone");
+
+const modalError =
+  document.getElementById("modalError");
+
+const heroSituation =
+  document.getElementById("situation");
+
+const heroStartButton =
+  document.getElementById("heroStartButton");
+
+const modalCategories =
+  document.querySelectorAll(".modal-category");
+
+const openSituationButtons =
+  document.querySelectorAll(".open-situation");
+
+let selectedCategory = "";
+
+
+/* =========================================================
+   RESET FORM
+========================================================= */
+
+function resetSituationForm(){
+
+  selectedCategory = "";
+
+  modalCategories.forEach(category=>{
+
+    category.classList.remove("active");
+
+  });
+
+  modalSituation.value = "";
+
+  modalName.value = "";
+
+  modalContact.value = "";
+
+  modalConsent.checked = false;
+
+  modalError.textContent = "";
+
+  modalError.classList.remove("active");
+
+  modalSituation.style.borderColor = "";
+
+  modalForm.classList.remove("hidden");
+
+  modalSuccess.classList.remove("active");
+
+}
+
+
+/* =========================================================
+   OPEN MODAL
+========================================================= */
+
+function openSituationModal(prefill = ""){
+
+  resetSituationForm();
+
+  situationModal.classList.add("active");
+
+  situationModal.setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+  document.body.classList.add("modal-open");
+
+
+  if(prefill.trim() !== ""){
+
+    modalSituation.value = prefill;
+
+  }
+
+
+  setTimeout(()=>{
+
+    if(prefill.trim() !== ""){
+
+      modalSituation.focus();
+
+    }else{
+
+      document
+        .querySelector(".modal-category")
+        ?.focus();
+
+    }
+
+  },200);
+
+}
+
+
+/* =========================================================
+   CLOSE MODAL
+========================================================= */
+
+function closeSituationModal(){
+
+  situationModal.classList.remove("active");
+
+  situationModal.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+  document.body.classList.remove("modal-open");
+
+}
+
+
+/* =========================================================
+   ALL OPEN BUTTONS
+========================================================= */
+
+openSituationButtons.forEach(button=>{
+
+  button.addEventListener("click",()=>{
+
+    openSituationModal();
+
+  });
+
+});
+
+
+/* =========================================================
+   HERO START BUTTON
+========================================================= */
+
+heroStartButton.addEventListener("click",()=>{
+
+  const text =
+    heroSituation.value.trim();
+
+  openSituationModal(text);
+
+});
+
+
+/* =========================================================
+   CATEGORY SELECT
+========================================================= */
+
+modalCategories.forEach(category=>{
+
+  category.addEventListener("click",()=>{
+
+    modalCategories.forEach(item=>{
+
+      item.classList.remove("active");
+
+    });
+
+    category.classList.add("active");
+
+    selectedCategory =
+      category.dataset.category;
+
+    modalError.classList.remove("active");
+
+    modalError.textContent = "";
+
+  });
+
+});
+
+
+/* =========================================================
+   CLEAR TEXTAREA ERROR
+========================================================= */
+
+modalSituation.addEventListener("input",()=>{
+
+  modalSituation.style.borderColor = "";
+
+  if(modalSituation.value.trim() !== ""){
+
+    modalError.classList.remove("active");
+
+    modalError.textContent = "";
+
+  }
+
+});
+
+
+/* =========================================================
+   CLEAR GENERAL ERROR
+========================================================= */
+
+modalConsent.addEventListener("change",()=>{
+
+  if(modalConsent.checked){
+
+    modalError.classList.remove("active");
+
+    modalError.textContent = "";
+
+  }
+
+});
+
+
+/* =========================================================
+   SUBMIT
+========================================================= */
+
+modalSubmit.addEventListener("click",()=>{
+
+  const situation =
+    modalSituation.value.trim();
+
+  const consent =
+    modalConsent.checked;
+
+
+  /* SITUATION REQUIRED */
+
+  if(situation === ""){
+
+    modalError.textContent =
+      "Будь ласка, опишіть вашу ситуацію.";
+
+    modalError.classList.add("active");
+
+    modalSituation.style.borderColor =
+      "#C0392B";
+
+    modalSituation.focus();
+
+    return;
+
+  }
+
+
+  /* CATEGORY REQUIRED */
+
+  if(selectedCategory === ""){
+
+    modalError.textContent =
+      "Будь ласка, оберіть категорію ситуації.";
+
+    modalError.classList.add("active");
+
+    document
+      .querySelector(".modal-category")
+      ?.focus();
+
+    return;
+
+  }
+
+
+  /* CONSENT REQUIRED */
+
+  if(!consent){
+
+    modalError.textContent =
+      "Будь ласка, підтвердіть згоду на обробку інформації.";
+
+    modalError.classList.add("active");
+
+    modalConsent.focus();
+
+    return;
+
+  }
+
+
+  /* =========================================
+     FRONTEND DEMO
+
+     На наступному етапі тут буде:
+
+     fetch("/api/legal-analysis", {
+       method:"POST",
+       headers:{
+         "Content-Type":"application/json"
+       },
+       body:JSON.stringify({
+         category:selectedCategory,
+         situation:situation,
+         name:modalName.value.trim(),
+         contact:modalContact.value.trim()
+       })
+     });
+
+     Поки що дані нікуди не відправляються.
+  ========================================= */
+
+
+  console.log("LEGAL REQUEST:",{
+
+    category:selectedCategory,
+
+    situation:situation,
+
+    name:modalName.value.trim(),
+
+    contact:modalContact.value.trim()
+
+  });
+
+
+  modalForm.classList.add("hidden");
+
+  modalSuccess.classList.add("active");
+
+});
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+modalClose.addEventListener(
+  "click",
+  closeSituationModal
+);
+
+
+/* =========================================================
+   DONE BUTTON
+========================================================= */
+
+modalDone.addEventListener(
+  "click",
+  closeSituationModal
+);
+
+
+/* =========================================================
+   CLICK OUTSIDE
+========================================================= */
+
+situationModal.addEventListener(
+  "click",
+  (event)=>{
+
+    if(event.target === situationModal){
+
+      closeSituationModal();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   ESCAPE
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  (event)=>{
+
+    if(
+      event.key === "Escape" &&
+      situationModal.classList.contains("active")
+    ){
+
+      closeSituationModal();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   INITIAL STATE
+========================================================= */
+
+showSlide(0);
+
+</script>
+
+</body>
+</html>
